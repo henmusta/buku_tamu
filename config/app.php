@@ -168,6 +168,8 @@ return [
     Yajra\DataTables\DataTablesServiceProvider::class,
     Barryvdh\Debugbar\ServiceProvider::class,
     Intervention\Image\ImageServiceProvider::class,
+    Mews\Captcha\CaptchaServiceProvider::class,
+    Barryvdh\DomPDF\ServiceProvider::class,
 
     /*
      * Application Service Providers...
@@ -177,6 +179,7 @@ return [
     // App\Providers\BroadcastServiceProvider::class,
     App\Providers\EventServiceProvider::class,
     App\Providers\RouteServiceProvider::class,
+    
 
   ],
 
@@ -233,7 +236,9 @@ return [
     'View' => Illuminate\Support\Facades\View::class,
     'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     'Menu' => App\Classes\Theme\Menu::class,
-    'Image' => Intervention\Image\Facades\Image::class
+    'Image' => Intervention\Image\Facades\Image::class,
+    'Captcha' => Mews\Captcha\Facades\Captcha::class,
+    'PDF' => Barryvdh\DomPDF\Facade::class,
 
   ],
 

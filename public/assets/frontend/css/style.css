@@ -1318,22 +1318,22 @@ body.box-body {
   display: -ms-flexbox;
   display: flex;
   align-items: center;
-  height: 800px;
+  height: 600px;
   position: relative;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
   .hero-slider-2 .single-slide {
-    height: 800px;
+    height: 600px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   .hero-slider-2 .single-slide {
-    height: 750px;
+    height: 450px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .hero-slider-2 .single-slide {
-    height: 600px;
+    height: 300px;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -1352,7 +1352,7 @@ body.box-body {
 @media only screen and (max-width: 767px) {
   .hero-slider-2 .slider-text-info {
     margin-bottom: 0px;
-    margin-top: 30px;
+    margin-top: 25px;
   }
 }
 .hero-slider-2 .slider-text-info h1 {

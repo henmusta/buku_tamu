@@ -35,7 +35,75 @@
     </div>
   </div>
   {{--Modal--}}
+  <div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalResetLabel">Tambah</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="formStore" method="POST" action="{{ route('backend.pengguna.store') }}">
+          @csrf
+          <div class="modal-body">
+            <div id="errorCreate" class="mb-3" style="display:none;">
+              <div class="alert alert-danger" role="alert">
+                <div class="alert-icon"><i class="flaticon-danger text-danger"></i></div>
+                <div class="alert-text">
+                </div>
+              </div>
+            </div>  
 
+              <div class="mb-3">
+              <label>Nama Lengkap <span class="text-danger">*</span></label>
+                <input name="nama" class="form-control" placeholder="nama" type="text" id="nama" autocomplete="off">
+              </div>
+              <div class="mb-3">
+              <label>Perusahaan<span class="text-danger">*</span></label>
+                <input name="perusahaan" class="form-control" placeholder="Perusahaan" type="text" id="perusahaan" autocomplete="off">
+              </div>	
+              <div class="mb-3">
+              <label>Jabatan<span class="text-danger">*</span></label>
+                <input name="jabatan" class="form-control" placeholder="Jabatan" type="text" id="jabatan" autocomplete="off">
+              </div>	
+              <div class="mb-3">
+              <label>Hp<span class="text-danger">*</span></label>
+                  <input name="hp" class="form-control" placeholder="Nomor Hp" type="number" id="hp" autocomplete="off">
+              </div>	
+              <div class="mb-3">
+              <label>Alamat<span class="text-danger">*</span></label>
+                  <textarea name="alamat" class="yourmessage form-control" placeholder="Alamat" ></textarea>
+              </div>							 			
+              <div class="mb-3">
+              <label>Jadwal datang<span class="text-danger">*</span></label>
+                <input name="jadwal_datang" class="form-control" placeholder="Jadwal Datang" type="text" id="jadwal_datang">
+              </div>	
+
+            
+            <!-- <div class="mb-3">
+              <label>Nama Permission <span class="text-danger">*</span></label>
+              <input type="text" name="title" class="form-control" placeholder="Masukan nama permission"/>
+            </div>
+            <div class="mb-3">
+              <label>Slug <span class="text-danger">*</span></label>
+              <input type="text" name="slug" class="form-control" placeholder="Masukan nama slug"/>
+            </div>
+            <div class="mb-3">
+              <label>Path Url <span class="text-danger">*</span></label>
+              <input type="text" name="path_url" class="form-control" placeholder="ex: /backend/dashboard"/>
+            </div>
+            <div class="mb-3">
+              <label>Icon <span class="text-danger">*</span></label>
+              <input type="text" name="icon" class="form-control" placeholder="ex: fas fa-address-card"/>
+            </div> -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalmodalEdit" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
       <div class="modal-content">
@@ -55,21 +123,38 @@
               </div>
             </div>
             <div class="mb-3">
-              <label>Nama Permission <span class="text-danger">*</span></label>
-              <input type="text" name="title" class="form-control" placeholder="Masukan nama permission"/>
-            </div>
-            <div class="mb-3">
-              <label>Slug <span class="text-danger">*</span></label>
-              <input type="text" name="slug" class="form-control" placeholder="Masukan nama slug"/>
-            </div>
-            <div class="mb-3">
-              <label>Path Url <span class="text-danger">*</span></label>
-              <input type="text" name="path_url" class="form-control" placeholder="ex: /backend/dashboard"/>
-            </div>
-            <div class="mb-3">
-              <label>Icon <span class="text-danger">*</span></label>
-              <input type="text" name="icon" class="form-control" placeholder="ex: fas fa-address-card"/>
-            </div>
+              <label>Nama Lengkap <span class="text-danger">*</span></label>
+                <input name="nama" class="form-control" placeholder="nama" type="text" id="nama" autocomplete="off">
+              </div>
+              <div class="mb-3">
+              <label>Perusahaan<span class="text-danger">*</span></label>
+                <input name="perusahaan" class="form-control" placeholder="Perusahaan" type="text" id="perusahaan" autocomplete="off">
+              </div>	
+              <div class="mb-3">
+              <label>Jabatan<span class="text-danger">*</span></label>
+                <input name="jabatan" class="form-control" placeholder="Jabatan" type="text" id="jabatan" autocomplete="off">
+              </div>	
+              <div class="mb-3">
+              <label>Hp<span class="text-danger">*</span></label>
+                  <input name="hp" class="form-control" placeholder="Nomor Hp" type="number" id="hp" autocomplete="off">
+              </div>	
+              <div class="mb-3">
+              <label>Alamat<span class="text-danger">*</span></label>
+                  <textarea name="alamat" class="yourmessage form-control" placeholder="Alamat" ></textarea>
+              </div>							 			
+              <div class="mb-3">
+              <label>Jadwal datang<span class="text-danger">*</span></label>
+                <input name="jadwal_datang" class="form-control" placeholder="Jadwal Datang" type="text" id="jadwal_datang">
+              </div>	
+              <div class="mb3">
+              <label>Status<span class="text-danger">*</span></label>
+                    <select class="form-select select2" id="selectStatus" name="selectStatus">
+                      <option></option>
+                      <option value="0">Menunggu</option>
+                      <option value="ACTIVE">Hadir</option>
+                      <option value="PENDING">Tidak Hadir</option>
+                    </select>
+                </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -110,7 +195,8 @@
           src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/b-colvis-2.0.1/fc-4.0.1/fh-3.2.0/r-2.2.9/rg-1.1.4/rr-1.2.8/datatables.min.js"></script>
   <script>
 $(document).ready(function () {
-     
+     let modalEdit = document.getElementById('modalEdit');
+    const bsEdit = new bootstrap.Modal(modalEdit);
      let modalDelete = document.getElementById('modalDelete');
      const bsDelete = new bootstrap.Modal(modalDelete);
      let dataTable = $('#Datatable').DataTable({
@@ -128,21 +214,48 @@ $(document).ready(function () {
          {data: 'jabatan', name: 'jabatan'},
          {data: 'alamat', name: 'alamat'},
          {data: 'jadwal_datang', name: 'jadwal_datang'},
-         {data: 'status', name: 'status'},
-         {data: 'e_tiket', name: 'e_tiket'},
+         {data: 'status', name: 'status', 
+          render: function (data, type, full, meta) {
+              let status = {
+                '0': {'title': 'Menunggu', 'class': ' bg-warning'},
+                '2': {'title': 'Tidak Hadir', 'class': ' bg-danger'},
+                '1': {'title': 'Hadir', 'class': ' bg-success'},
+              };
+              if (typeof status[data] === 'undefined') {
+                return data;
+              }
+              return '<span class="badge bg-pill' + status[data].class + '">' + status[data].title +
+                '</span>';
+            }
+          },
+          {data: 'print', name: 'print', orderable: false, searchable: false},
          {data: 'action', name: 'action', orderable: false, searchable: false},
        ],
        columnDefs: [
-         {
-           className: 'text-center',
-           orderable: false,
-           targets: 2,
-           render: function (data, type, full, meta) {
-             return `<i class="`+(data ? data : '')+` fa-2x"></i>`;
-           }
-         }
+ 
        ],
      });
+
+     modalEdit.addEventListener('show.bs.modal', function (event) {
+        let nama = event.relatedTarget.getAttribute('data-bs-nama');
+        let jabatan = event.relatedTarget.getAttribute('data-bs-jabatan');
+        let perusahaan = event.relatedTarget.getAttribute('data-bs-perusahaan');
+        let alamat = event.relatedTarget.getAttribute('data-bs-alamat');
+        let hp = event.relatedTarget.getAttribute('data-bs-hp');
+        let jadwal_datang = event.relatedTarget.getAttribute('data-bs-jadwal_datang');
+        this.querySelector('input[name=nama]').value = nama;
+        this.querySelector('input[name=jabatan]').value = jabatan;
+        this.querySelector('input[name=perusahaan]').value = perusahaan;
+        this.querySelector('input[name=alamat]').value = alamat;
+        this.querySelector('input[name=hp]').value = hp;
+        this.querySelector('input[name=jadwal_datang]').value = jadwal_datang;
+        this.querySelector('#formUpdate').setAttribute('action', '{{ route("backend.pengguna.index") }}/' + event.relatedTarget.getAttribute('data-bs-id'));
+      });
+
+      modalEdit.addEventListener('hidden.bs.modal', function (event) {
+        this.querySelector('input[name=title]').value = '';
+        this.querySelector('#formUpdate').setAttribute('href', '');
+      });
  
      modalDelete.addEventListener('show.bs.modal', function (event) {
        let button = event.relatedTarget;
@@ -194,6 +307,52 @@ $(document).ready(function () {
          }
        });
      });
+
+     $("#formUpdate").submit(function(e){
+        e.preventDefault();
+        let form 	= $(this);
+        let btnSubmit = form.find("[type='submit']");
+        let btnSubmitHtml = btnSubmit.html();
+        let url 	= form.attr("action");
+        let data 	= new FormData(this);
+        $.ajax({
+          beforeSend:function() {
+            btnSubmit.addClass("disabled").html("<span aria-hidden='true' class='spinner-border spinner-border-sm' role='status'></span> Loading ...").prop("disabled", "disabled");
+          },
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          cache: false,
+          processData: false,
+          contentType: false,
+          type: "POST",
+          url : url,
+          data : data,
+          success: function (response) {
+            let errorEdit = $('#errorEdit');
+            errorEdit.css('display', 'none');
+            errorEdit.find('.alert-text').html('');
+            btnSubmit.removeClass("disabled").html(btnSubmitHtml).removeAttr("disabled");
+            if (response.status === "success") {
+              toastr.success(response.message, 'Success !');
+              dataTable.draw();
+              bsEdit.hide();
+            } else {
+              toastr.error((response.message ? response.message : "Please complete your form"), 'Failed !');
+              if (response.error !== undefined) {
+                errorEdit.removeAttr('style');
+                $.each(response.error, function (key, value) {
+                  errorEdit.find('.alert-text').append('<span style="display: block">' + value + '</span>');
+                });
+              }
+            }
+          },
+          error: function (response) {
+            btnSubmit.removeClass("disabled").html(btnSubmitHtml).removeAttr("disabled");
+            toastr.error(response.responseJSON.message, 'Failed !');
+          }
+        });
+      });
 
      $("#formDelete").click(function (e) {
        e.preventDefault();

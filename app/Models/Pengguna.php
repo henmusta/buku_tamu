@@ -14,6 +14,7 @@ class Pengguna extends Model
         'perusahaan',
         'alamat',
         'jabatan',
+        'hp',
         'jadwal_datang',
         'status',
         'e-tiket',

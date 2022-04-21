@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
+use PDF;
 
 class HomeController extends Controller
 {
+    use ResponseStatus;
     public function index(Request $request)
     {
         return view('frontend.home.index');  
@@ -26,14 +28,15 @@ class HomeController extends Controller
         'alamat' => 'required',
         'jadwal_datang' => 'required',
         'hp' => 'required',
+        // 'captcha' => 'required|captcha'
       ]);
   
       if ($validator->passes()) {
         DB::beginTransaction();
         try {
-                Pengguna::create([
-                'nama' => ucwords($request['name']),
-                'perusahaan' => $request['name'],
+                $data =  Pengguna::create([
+                'nama' => ucwords($request['nama']),
+                'perusahaan' => $request['perusahaan'],
                 'jabatan' => $request['jabatan'],
                 'alamat' => $request['alamat'],
                 'jadwal_datang' => $request['jadwal_datang'],
@@ -41,9 +44,15 @@ class HomeController extends Controller
                 ]);
         
                 $response = response()->json([
+                'id' =>$data['id'],
                 'status' => 'success',
                 'message' => 'Data berhasil disimpan'
                 ]);
+
+                $cetak = $this->generatePDF($data);
+
+                DB::commit();
+                $response = response()->json($this->responseStore(true, route('frontend.home.index')));
             } catch (Throwable $throw) {
             DB::rollBack();
             $response = response()->json($this->responseStore(false));
@@ -52,5 +61,21 @@ class HomeController extends Controller
         $response = response()->json(['error' => $validator->errors()->all()]);
       }
       return $response;
+    }
+
+    public function reloadCaptcha()
+    {
+        return response()->json(['captcha'=> captcha_img()]);
+    }
+    public function generatePDF($data)
+    {
+        $data = [
+            'title' => 'Formulir',
+            'date' => date('m/d/Y')
+        ];
+          
+        $pdf = PDF::loadView('pdf.e_tiket', $data);
+    
+        return $pdf->stream('e_tiket.pdf');
     }
 }

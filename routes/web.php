@@ -19,6 +19,13 @@ use App\Http\Controllers\Frontend as Frontend;
 
 
 Route::get('/', [Frontend\HomeController::class,  'index'])->name('index');
+Route::get('reload-captcha', [Frontend\HomeController::class, 'reloadCaptcha'])->name('reloadCaptcha');
+
+Route::prefix('frontend')->name('frontend.')->group(function () {
+  Route::resource('home', Frontend\HomeController::class);
+  Route::get('home/{id}/generatePDF', [Frontend\HomeController::class, 'generatePDF'])->name('home.generatePDF');
+});
+
 
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::prefix('backend')->name('backend.')->group(function () {
@@ -29,9 +36,8 @@ Route::prefix('backend')->name('backend.')->group(function () {
 
 Route::prefix('backend')->name('backend.')->middleware(['auth:erp'])->group(function () {
   Route::get('dashboard', [Backend\DashboardController::class, 'index'])->name('index');
-
   Route::resource('pengguna', Backend\PenggunaController::class);
-
+  Route::get('pengguna/{id}/generatePDF', [Backend\PenggunaController::class, 'generatePDF'])->name('pengguna.generatePDF');
 
 
 

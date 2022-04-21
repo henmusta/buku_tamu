@@ -2,22 +2,15 @@
 @section('content')
 <div class="hero-slider  hero-slider-2" id="slider">
         <div class="single-slide " style="background-image: url({{ asset('assets/frontend/images/slider/slider-03.png') }})">
-            <div class="hero-content-one container">
+        <div class="hero-content-one container">
                 <div class="row">
-                    <div class="col-lg-6"> 
-                        <div class="slider-text-info text-white">
-                            <h4>GINK</h4>
-                            <h1>Sistem -  <span>Pendaftaran <br> ------ </span></h1>
+                    <div class="col-lg-12"> 
+                        <div class="slider-text-info text-center">
+                            <h4>Belum Tau Nulis Apa</h4>
+                            <h1>Sistem -  <span>Pendaftaran <br> --------------------------- </span></h1>
                             <div class="slider-button">
-                                <a href="#about" class="slider-btn theme-btn">About</a>
-                                <a href="#contact" class="slider-btn white-btn">Registrasi</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6"> 
-                        <div class="slider-text-info text-white">
-                            <div class="about-image text-center">
-                             <img src="{{ asset('assets/frontend/images/about/01.png') }}" alt="">
+                                <a href="#kontak" class="slider-btn theme-btn">Registrasi</a>
+                                <a href="#about" class="slider-btn white-btn">About</a>
                             </div>
                         </div>
                     </div>
@@ -98,7 +91,7 @@
             <div class="row">
                 <div class="col-lg-8  m-auto">
                     <div class="subscribe-form-area">
-                        <form  class="contact-form-area" action="{{ route('backend.pengguna.store') }}" id="formStore">
+                        <form  class="contact-form-area" action="{{ route('frontend.home.store') }}" id="formStore">
                         @csrf    
                          <div id="errorCreate" class="mb-3" style="display:none;">
                             <div class="alert alert-danger" role="alert">
@@ -125,7 +118,18 @@
                                 <div class="form-group col-md-12">
                                     <input name="jadwal_datang" class="form-control" placeholder="Jadwal Datang" type="text" id="jadwal_datang">
                                 </div>	
-                               
+                   
+                 
+                            <div class="col-md-6 captcha">
+                            <label for="captcha" class="form-group col-md-12">Captcha</label>
+                                <span>{!! captcha_img() !!}</span>
+                                <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                &#x21bb;
+                                </button>
+                            </div>
+                               <div class="form-group col-md-12">
+                               <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
+                                </div>	
                                 <div class="submit-form form-group col-sm-12">
                                     <button class="button submit-btn" type="submit"><span>Submit</span></button>
                                     <p class="form-messege"></p>
@@ -148,6 +152,16 @@
       $("#jadwal_datang").flatpickr({
         dateFormat: "Y-m-d"
       });
+      $('#reload').click(function () {
+        $.ajax({
+            type: 'GET',
+            url: 'reload-captcha',
+            success: function (data) {
+                $(".captcha span").html(data.captcha);
+            }
+        });
+    });
+
 
       $("#formStore").submit(function (e) {
         e.preventDefault();
@@ -174,12 +188,14 @@
             if (response.status === "success") {
               toastr.success(response.message, 'Success !');
               setTimeout(function () {
+                window.open('{{ route('frontend.home.index') }}' +'/'+ response.id +'/generatePDF', '_blank');
                 if (response.redirect === "" || response.redirect === "reload") {
                   location.reload();
                 } else {
                   location.href = response.redirect;
                 }
               }, 1000);
+         
             } else {
               toastr.error((response.message ? response.message : "Please complete your form"), 'Failed !');
               if (response.error !== undefined) {
@@ -195,6 +211,7 @@
             toastr.error(response.responseJSON.message, 'Failed !');
           }
         });
+      
       });
     });
   </script>
