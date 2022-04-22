@@ -61,18 +61,6 @@ class PenggunaController extends Controller
         return view('backend.pengguna.index', compact('config', 'page_breadcrumbs'));  
     }
 
-  
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
       $validator = Validator::make($request->all(), [
@@ -86,20 +74,23 @@ class PenggunaController extends Controller
   
       if ($validator->passes()) {
         DB::beginTransaction();
-        try {
-                Pengguna::create([
-                'nama' => ucwords($request['name']),
-                'perusahaan' => $request['name'],
-                'jabatan' => $request['jabatan'],
-                'alamat' => $request['alamat'],
-                'jadwal_datang' => $request['jadwal_datang'],
-                'hp' => $request['hp'],
+           try {
+               $data = Pengguna::create([
+                  'nama' => ucwords($request['nama']),
+                  'perusahaan' => $request['perusahaan'],
+                  'jabatan' => $request['jabatan'],
+                  'alamat' => $request['alamat'],
+                  'jadwal_datang' => $request['jadwal_datang'],
+                  'hp' => $request['hp'],
+                  'status' => $request['selectStatus'],
                 ]);
-        
-                $response = response()->json([
-                'status' => 'success',
-                'message' => 'Data berhasil disimpan'
-                ]);
+                DB::commit();
+                if($data->save()){
+                  $response = response()->json([
+                    'status' => 'success',
+                    'message' => 'Data berhasil disimpan'
+                  ]);
+                } 
             } catch (Throwable $throw) {
             DB::rollBack();
             $response = response()->json($this->responseStore(false));
@@ -115,35 +106,44 @@ class PenggunaController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pengguna  $pengguna
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pengguna $pengguna)
+   
+    public function update(Request $request, $id)
     {
-        //
+      $validator = Validator::make($request->all(), [
+        'nama' => 'required',
+        'perusahaan' => 'required',
+        'jabatan' => 'required',
+        'alamat' => 'required',
+        'jadwal_datang' => 'required',
+        'hp' => 'required',
+      ]);
+  
+      if ($validator->passes()) {
+        DB::beginTransaction();
+        try {
+          $data = Pengguna::findOrFail($id);
+          $data->update([
+            'nama' => ucwords($request['nama']),
+            'perusahaan' => $request['perusahaan'],
+            'jabatan' => $request['jabatan'],
+            'alamat' => $request['alamat'],
+            'jadwal_datang' => $request['jadwal_datang'],
+            'hp' => $request['hp'],
+            'status' => $request['selectStatus'],
+          ]);
+          DB::commit();
+          $response = response()->json($this->responseUpdate(true));
+  
+        } catch (Throwable $throw) {
+          DB::rollBack();
+          $response = response()->json($this->responseUpdate(false));
+        }
+      } else {
+        $response = response()->json(['error' => $validator->errors()->all()]);
+      }
+      return $response;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pengguna  $pengguna
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Pengguna $pengguna)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pengguna  $pengguna
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Pengguna $pengguna)
     {
         //

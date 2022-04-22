@@ -120,15 +120,14 @@
                                 </div>	
                    
                  
-                            <div class="col-md-6 captcha">
-                            <label for="captcha" class="form-group col-md-12">Captcha</label>
+                            <div class="form-group col-md-12 captcha">
                                 <span>{!! captcha_img() !!}</span>
                                 <button type="button" class="btn btn-danger" class="reload" id="reload">
                                 &#x21bb;
                                 </button>
                             </div>
                                <div class="form-group col-md-12">
-                               <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
+                                    <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
                                 </div>	
                                 <div class="submit-form form-group col-sm-12">
                                     <button class="button submit-btn" type="submit"><span>Submit</span></button>

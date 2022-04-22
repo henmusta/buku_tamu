@@ -1,66 +1,102 @@
-<!DOCTYPE html>
-<html lang="en" id="demo">
+<!doctype html>
+<html lang="en" dir="ltr">
+
 <head>
 
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-  <link rel="icon" href="../../assets/img/brand/favicon.ico" type="image/x-icon"/>
-  <title>{{ $config['page_title'] ?? "NULL" }} | {{ config('app.name') }}</title>
+    <!-- META DATA -->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="kurnia">
+    <meta name="keywords" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/brand/favicon.ico"/>
 
-  @include('layouts.head-css')
+    <!-- TITLE -->
+    <title>{{ $config['page_title'] ?? "" }} | {{ config('app.name') }}</title>
+
+    <!-- STYLE CSS -->
+    @include('layouts.head-css')
 </head>
 
-<body class="main-body leftmenu hover-submenu">
-@include('layouts.switcher')
+<body class="app sidebar-mini ltr">
 
-@include('layouts.preloader')
+<!-- GLOBAL-LOADER -->
+{{--@include('layouts.preloader')--}}
+<!-- /GLOBAL-LOADER -->
 
-<!-- Page -->
+<!-- PAGE -->
 <div class="page">
-@include('layouts.sidebar')
+    <div class="page-main">
 
-@include('layouts.topbar')
+        <!-- app-Header -->
+    @include('layouts.topbar')
+    <!-- /app-Header -->
 
-
-<!-- Main Content-->
-  <div class="main-content side-content pt-0">
-    <div class="container-fluid">
-      <div class="inner-body">
-
-        <!-- Page Header -->
-        <div class="page-header">
-          <div>
-            <h2 class="main-content-title tx-24 mg-b-5">{{ $config['page_title'] ?? "NULL" }}</h2>
-            @component('components.breadcrumb', ['page_breadcrumbs' => $page_breadcrumbs])
-              @slot('title'){{ $config['page_title'] }} @endslot
-            @endcomponent
-          </div>
-          <div class="d-flex">
-            <div class="justify-content-center">
-              @yield('content_corner')
+        <!--APP-SIDEBAR-->
+        <div class="sticky">
+            <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
+            <div class="app-sidebar">
+                <div class="side-header" style="z-index: 999;">
+                    <a class="header-brand1" href="{{ Auth::user()->roles->dashboard_url }}">
+                        <img src="/assets/img/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
+                        <img src="{{ asset('storage/images/thumbnail/favicon.png') }}" class="header-brand-img toggle-logo" alt="logo">
+                        <img src="{{ asset('storage/images/thumbnail/favicon.png') }}" class="header-brand-img light-logo" alt="logo">
+                        <img src="{{ asset('storage/images/thumbnail/logo-light.png') }}"  style="width: 130px; height: 110px" class="header-brand-img light-logo1" alt="logo">
+                    </a>
+                    <!-- LOGO -->
+                </div>
+                @include('layouts.sidebar')
             </div>
-          </div>
+            <!--/APP-SIDEBAR-->
         </div>
-        <!-- End Page Header -->
 
-        <!--Row-->
-        @yield('content')
-      </div>
+        <!--app-content open-->
+        <div class="main-content app-content mt-0">
+            <div class="side-app">
+                <!-- CONTAINER -->
+                <div class="main-container container-fluid">
+                    <!-- PAGE-HEADER -->
+                    <div class="page-header">
+                        <h1 class="page-title">{{ $config['page_title'] ?? "" }}</h1>
+                        <div>
+                            @component('components.breadcrumb', ['page_breadcrumbs' => $page_breadcrumbs ?? array()])
+                                @slot('title'){{ $config['page_title'] ?? '' }} @endslot
+                            @endcomponent
+                        </div>
+                    </div>
+                    <!-- PAGE-HEADER END -->
+
+                    <!-- ROW OPEN -->
+                    <div class="row row-cards">
+                        @yield('content')
+                    </div>
+                    <!-- ROW CLOSED -->
+                </div>
+                <!-- CONTAINER CLOSED -->
+            </div>
+        </div>
+        <!--app-content closed-->
     </div>
-  </div>
-  <!-- End Main Content-->
 
-  @include('layouts.footer')
+    <!-- Sidebar-right -->
+@include('layouts.sidebar-right')
+<!--/Sidebar-right-->
 
- @include('layouts.corner-right-siderbar')
+    <!-- Country-selector modal-->
+@include('layouts.modal-language')
+<!-- Country-selector modal-->
 
+    <!-- FOOTER -->
+@include('layouts.footer')
+<!-- FOOTER CLOSED -->
 </div>
-<!-- End Page -->
 
-<!-- Back-to-top -->
-<a href="#top" id="back-to-top"><i class="fe fe-arrow-up"></i></a>
-
-@include('layouts.vendor-scripts')
+<!-- BACK-TO-TOP -->
+<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
 </body>
+
+@include('layouts.scripts')
+
 </html>

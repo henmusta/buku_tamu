@@ -1,17 +1,17 @@
-<!-- Sidemenu -->
-<div class="main-sidebar main-sidebar-sticky side-menu ps d-print-none">
-  <div class="sidemenu-logo">
-    <a class="main-logo" href="{{ Auth::user()->roles[0]->url_dashboard }}">
-      <img src="{{ asset('storage/images/thumbnail/logo-light.png') }}" class="header-brand-img desktop-logo" alt="logo">
-      <img src="{{ asset('storage/images/favicon/favicon.png') }}" class="header-brand-img icon-logo" alt="logo">
-      <img src="{{ asset('storage/images/thumbnail/logo.png') }}" class="header-brand-img desktop-logo theme-logo" alt="logo">
-      <img src="{{ asset('storage/images/favicon/favicon.png') }}" class="header-brand-img icon-logo theme-logo" alt="logo">
-    </a>
+<div class="main-sidemenu">
+  <div class="slide-left disabled" id="slide-left">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
+         viewBox="0 0 24 24">
+      <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"/>
+    </svg>
   </div>
-  <div class="main-sidebar-body">
-    <ul class="nav">
-      {!! Menu::sidebar(); !!}
-    </ul>
+  <ul class="side-menu">
+    {!! Menu::sidebar() !!}
+  </ul>
+  <div class="slide-right" id="slide-right">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24"
+         viewBox="0 0 24 24">
+      <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"/>
+    </svg>
   </div>
 </div>
-<!-- End Sidemenu -->

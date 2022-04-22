@@ -51,50 +51,39 @@
                 <div class="alert-text">
                 </div>
               </div>
-            </div>  
-
-              <div class="mb-3">
+            </div>
+            <div class="mb-3">
               <label>Nama Lengkap <span class="text-danger">*</span></label>
                 <input name="nama" class="form-control" placeholder="nama" type="text" id="nama" autocomplete="off">
-              </div>
-              <div class="mb-3">
+            </div>
+            <div class="mb-3">
               <label>Perusahaan<span class="text-danger">*</span></label>
                 <input name="perusahaan" class="form-control" placeholder="Perusahaan" type="text" id="perusahaan" autocomplete="off">
-              </div>	
-              <div class="mb-3">
+            </div>	
+            <div class="mb-3">
               <label>Jabatan<span class="text-danger">*</span></label>
                 <input name="jabatan" class="form-control" placeholder="Jabatan" type="text" id="jabatan" autocomplete="off">
-              </div>	
-              <div class="mb-3">
+            </div>	
+            <div class="mb-3">
               <label>Hp<span class="text-danger">*</span></label>
                   <input name="hp" class="form-control" placeholder="Nomor Hp" type="number" id="hp" autocomplete="off">
-              </div>	
-              <div class="mb-3">
+            </div>	
+            <div class="mb-3">
               <label>Alamat<span class="text-danger">*</span></label>
-                  <textarea name="alamat" class="yourmessage form-control" placeholder="Alamat" ></textarea>
-              </div>							 			
-              <div class="mb-3">
+                  <textarea name="alamat" id="alamat" class="yourmessage form-control" placeholder="Alamat" ></textarea>
+            </div>							 			
+            <div class="mb-3">
               <label>Jadwal datang<span class="text-danger">*</span></label>
-                <input name="jadwal_datang" class="form-control" placeholder="Jadwal Datang" type="text" id="jadwal_datang">
-              </div>	
-
-            
-            <!-- <div class="mb-3">
-              <label>Nama Permission <span class="text-danger">*</span></label>
-              <input type="text" name="title" class="form-control" placeholder="Masukan nama permission"/>
+                <input name="jadwal_datang" class="form-control datepicker" placeholder="Jadwal Datang" type="text" id="jadwal_datang">
+            </div>	
+            <div class="mb3">
+              <label>Status<span class="text-danger">*</span></label>
+                    <select class="form-select" id="selectStatuscreate" name="selectStatus">
+                      <option value="0">Menunggu</option>
+                      <option value="1">Hadir</option>
+                      <option value="2">Tidak Hadir</option>
+                    </select>
             </div>
-            <div class="mb-3">
-              <label>Slug <span class="text-danger">*</span></label>
-              <input type="text" name="slug" class="form-control" placeholder="Masukan nama slug"/>
-            </div>
-            <div class="mb-3">
-              <label>Path Url <span class="text-danger">*</span></label>
-              <input type="text" name="path_url" class="form-control" placeholder="ex: /backend/dashboard"/>
-            </div>
-            <div class="mb-3">
-              <label>Icon <span class="text-danger">*</span></label>
-              <input type="text" name="icon" class="form-control" placeholder="ex: fas fa-address-card"/>
-            </div> -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -125,36 +114,35 @@
             <div class="mb-3">
               <label>Nama Lengkap <span class="text-danger">*</span></label>
                 <input name="nama" class="form-control" placeholder="nama" type="text" id="nama" autocomplete="off">
-              </div>
-              <div class="mb-3">
+            </div>
+            <div class="mb-3">
               <label>Perusahaan<span class="text-danger">*</span></label>
                 <input name="perusahaan" class="form-control" placeholder="Perusahaan" type="text" id="perusahaan" autocomplete="off">
-              </div>	
-              <div class="mb-3">
+            </div>	
+            <div class="mb-3">
               <label>Jabatan<span class="text-danger">*</span></label>
                 <input name="jabatan" class="form-control" placeholder="Jabatan" type="text" id="jabatan" autocomplete="off">
-              </div>	
-              <div class="mb-3">
+            </div>	
+            <div class="mb-3">
               <label>Hp<span class="text-danger">*</span></label>
                   <input name="hp" class="form-control" placeholder="Nomor Hp" type="number" id="hp" autocomplete="off">
-              </div>	
-              <div class="mb-3">
+            </div>	
+            <div class="mb-3">
               <label>Alamat<span class="text-danger">*</span></label>
-                  <textarea name="alamat" class="yourmessage form-control" placeholder="Alamat" ></textarea>
-              </div>							 			
-              <div class="mb-3">
+                  <textarea name="alamat" id="alamat" class="yourmessage form-control" placeholder="Alamat" ></textarea>
+            </div>							 			
+            <div class="mb-3">
               <label>Jadwal datang<span class="text-danger">*</span></label>
-                <input name="jadwal_datang" class="form-control" placeholder="Jadwal Datang" type="text" id="jadwal_datang">
-              </div>	
-              <div class="mb3">
+                <input name="jadwal_datang" class="form-control datepicker" placeholder="Jadwal Datang" type="text" id="jadwal_datang">
+            </div>	
+            <div class="mb3">
               <label>Status<span class="text-danger">*</span></label>
                     <select class="form-select select2" id="selectStatus" name="selectStatus">
-                      <option></option>
                       <option value="0">Menunggu</option>
-                      <option value="ACTIVE">Hadir</option>
-                      <option value="PENDING">Tidak Hadir</option>
+                      <option value="1">Hadir</option>
+                      <option value="2">Tidak Hadir</option>
                     </select>
-                </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -187,18 +175,32 @@
 @endsection
 
 @section('css')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/b-colvis-2.0.1/fc-4.0.1/fh-3.2.0/r-2.2.9/rg-1.1.4/rr-1.2.8/datatables.min.css"/>
 @endsection
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script type="text/javascript"
           src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/b-colvis-2.0.1/fc-4.0.1/fh-3.2.0/r-2.2.9/rg-1.1.4/rr-1.2.8/datatables.min.js"></script>
   <script>
 $(document).ready(function () {
+     let modalCreate = document.getElementById('modalCreate');
+      const bsCreate = new bootstrap.Modal(modalCreate);
      let modalEdit = document.getElementById('modalEdit');
     const bsEdit = new bootstrap.Modal(modalEdit);
      let modalDelete = document.getElementById('modalDelete');
      const bsDelete = new bootstrap.Modal(modalDelete);
+$("#selectStatuscreate").select2({
+       placeholder: 'Choose one',
+      searchInputPlaceholder: 'Search',
+      minimumResultsForSearch: Infinity,
+      width: '100%'
+});
+      $(".datepicker").flatpickr({
+        dateFormat: "Y-m-d"
+      });
+
      let dataTable = $('#Datatable').DataTable({
        responsive: true,
        scrollX: false,
@@ -236,6 +238,13 @@ $(document).ready(function () {
        ],
      });
 
+      modalCreate.addEventListener('show.bs.modal', function (event) {
+      });
+      modalCreate.addEventListener('hidden.bs.modal', function (event) {
+        $(this).find("input,textarea,select").val('').end();
+ 
+      });
+
      modalEdit.addEventListener('show.bs.modal', function (event) {
         let nama = event.relatedTarget.getAttribute('data-bs-nama');
         let jabatan = event.relatedTarget.getAttribute('data-bs-jabatan');
@@ -243,17 +252,26 @@ $(document).ready(function () {
         let alamat = event.relatedTarget.getAttribute('data-bs-alamat');
         let hp = event.relatedTarget.getAttribute('data-bs-hp');
         let jadwal_datang = event.relatedTarget.getAttribute('data-bs-jadwal_datang');
+        let status = event.relatedTarget.getAttribute('data-bs-status');
+        let optionStatus = new Option( status, status, false, false);
+        // $(this).find('#selectStatus').append(optionStatus).trigger('change');
+        $(this).find('#selectStatus').val(status).change();
+        $(this).find('#alamat').text(alamat);
         this.querySelector('input[name=nama]').value = nama;
         this.querySelector('input[name=jabatan]').value = jabatan;
         this.querySelector('input[name=perusahaan]').value = perusahaan;
-        this.querySelector('input[name=alamat]').value = alamat;
         this.querySelector('input[name=hp]').value = hp;
         this.querySelector('input[name=jadwal_datang]').value = jadwal_datang;
         this.querySelector('#formUpdate').setAttribute('action', '{{ route("backend.pengguna.index") }}/' + event.relatedTarget.getAttribute('data-bs-id'));
       });
 
       modalEdit.addEventListener('hidden.bs.modal', function (event) {
-        this.querySelector('input[name=title]').value = '';
+        $(this).find('#alamat').text('');
+        this.querySelector('input[name=nama]').value = '';
+        this.querySelector('input[name=jabatan]').value = '';
+        this.querySelector('input[name=perusahaan]').value = '';
+        this.querySelector('input[name=hp]').value = '';
+        this.querySelector('input[name=jadwal_datang]').value = '';
         this.querySelector('#formUpdate').setAttribute('href', '');
       });
  
@@ -266,47 +284,47 @@ $(document).ready(function () {
        this.querySelector('.urlDelete').setAttribute('href', '');
      });
      $("#formStore").submit(function (e) {
-       e.preventDefault();
-       let form = $(this);
-       let btnSubmit = form.find("[type='submit']");
-       let btnSubmitHtml = btnSubmit.html();
-       let url = form.attr("action");
-       let data = new FormData(this);
-       $.ajax({
-         beforeSend: function () {
-           btnSubmit.addClass("disabled").html("<span aria-hidden='true' class='spinner-border spinner-border-sm' role='status'></span> Loading ...").prop("disabled", "disabled");
-         },
-         cache: false,
-         processData: false,
-         contentType: false,
-         type: "POST",
-         url: url,
-         data: data,
-         success: function (response) {
-           let errorCreate = $('#errorCreate');
-           errorCreate.css('display', 'none');
-           errorCreate.find('.alert-text').html('');
-           btnSubmit.removeClass("disabled").html(btnSubmitHtml).removeAttr("disabled");
-           if (response.status === "success") {
-             toastr.success(response.message, 'Success !');
-             dataTable.draw();
-             bsCreate.hide();
-           } else {
-             toastr.error((response.message ? response.message : "Please complete your form"), 'Failed !');
-             if (response.error !== undefined) {
-               errorCreate.removeAttr('style');
-               $.each(response.error, function (key, value) {
-                 errorCreate.find('.alert-text').append('<span style="display: block">' + value + '</span>');
-               });
-             }
-           }
-         },
-         error: function (response) {
-           btnSubmit.removeClass("disabled").html(btnSubmitHtml).removeAttr("disabled");
-           toastr.error(response.responseJSON.message, 'Failed !');
-         }
-       });
-     });
+        e.preventDefault();
+        let form = $(this);
+        let btnSubmit = form.find("[type='submit']");
+        let btnSubmitHtml = btnSubmit.html();
+        let url = form.attr("action");
+        let data = new FormData(this);
+        $.ajax({
+          beforeSend: function () {
+            btnSubmit.addClass("disabled").html("<span aria-hidden='true' class='spinner-border spinner-border-sm' role='status'></span> Loading ...").prop("disabled", "disabled");
+          },
+          cache: false,
+          processData: false,
+          contentType: false,
+          type: "POST",
+          url: url,
+          data: data,
+          success: function (response) {
+            let errorCreate = $('#errorCreate');
+            errorCreate.css('display', 'none');
+            errorCreate.find('.alert-text').html('');
+            btnSubmit.removeClass("disabled").html(btnSubmitHtml).removeAttr("disabled");
+            if (response.status === "success") {
+              toastr.success(response.message, 'Success !');
+              dataTable.draw();
+              bsCreate.hide();
+            } else {
+              toastr.error((response.message ? response.message : "Please complete your form"), 'Failed !');
+              if (response.error !== undefined) {
+                errorCreate.removeAttr('style');
+                $.each(response.error, function (key, value) {
+                  errorCreate.find('.alert-text').append('<span style="display: block">' + value + '</span>');
+                });
+              }
+            }
+          },
+          error: function (response) {
+            btnSubmit.removeClass("disabled").html(btnSubmitHtml).removeAttr("disabled");
+            toastr.error(response.responseJSON.message, 'Failed !');
+          }
+        });
+      });
 
      $("#formUpdate").submit(function(e){
         e.preventDefault();
